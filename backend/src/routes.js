@@ -1,20 +1,36 @@
 const express = require('express');
-const OngControler = require('./controlers/OngControler');
-const IncidentController = require('./controlers/IncidentController');
-const ProfileController = require('./controlers/ProfileController');
-const SessionController = require('./controlers/SessionController');
+
+const ProjsController = require('./controlers/ProjsController');
+const ActionsController = require('./controlers/ActionsController');
+const ContributorController = require('./controlers/ContributorController');
+const IndicatorController = require('./controlers/IndicatorController');
+const SectorController = require('./controlers/SectorController');
 
 const routes = express.Router();
 
-routes.post('/sessions', SessionController.create);
+routes.get('/projects/:id', ProjsController.index);
+routes.post('/projects', ProjsController.create);
+routes.delete("/projects/:id",ProjsController.delete);
+routes.post('/projects/:id', ProjsController.update);
 
-routes.get('/ongs', OngControler.index );
-routes.post('/ongs',OngControler.create);
+routes.get('/actions', ActionsController.index);
+routes.post('/actions', ActionsController.create);
+routes.post('/actions/:idAction', ActionsController.update);
+routes.delete('/actions/:idAction', ActionsController.delete);
 
-routes.get('/profile', ProfileController.index );
+routes.get('/user/:id', ContributorController.index);
+routes.post('/user', ContributorController.create);
+routes.post('/user/:idUser', ContributorController.update);
+routes.delete('/user/:idUser', ContributorController.delete);
 
-routes.get('/incidents',IncidentController.index);
-routes.post('/incidents',IncidentController.create);
-routes.delete("/incidents/:id",IncidentController.delete);
+routes.get('/indicator/:idInd', IndicatorController.index);
+routes.post('/indicator', IndicatorController.create);
+routes.post('/indicator/:idInd', IndicatorController.update);
+routes.delete('/indicator/:idInd', IndicatorController.delete);
+
+routes.get('/sector/:idSector', SectorController.index);
+routes.post('/sector', SectorController.create);
+routes.post('/sector/:idSector', SectorController.update);
+routes.delete('/sector/:idSector', SectorController.delete);
 
 module.exports = routes;
